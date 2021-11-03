@@ -30,6 +30,11 @@ public class DemonioController {
 		return demonioService.findAll();
 	}
 	
+	@GetMapping("/{id}")
+	public Demonio detail(@PathVariable long id) {
+		return demonioService.findById(id);
+	}
+	
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Demonio save(@RequestBody Demonio d) {

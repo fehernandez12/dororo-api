@@ -31,6 +31,11 @@ public class LugarController {
 		return lugarService.findAll();
 	}
 	
+	@GetMapping("/{id}")
+	public Lugar detail(@PathVariable long id) {
+		return lugarService.findById(id);
+	}
+	
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Lugar save(@RequestBody Lugar l) {

@@ -31,6 +31,11 @@ public class ParteController {
 		return parteService.findAll();
 	}
 	
+	@GetMapping("/{id}")
+	public Parte detail(@PathVariable long id) {
+		return parteService.findById(id);
+	}
+	
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Parte save(@RequestBody Parte p) {
