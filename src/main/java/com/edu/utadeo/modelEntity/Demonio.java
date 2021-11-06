@@ -2,6 +2,7 @@ package com.edu.utadeo.modelEntity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="demonios",
@@ -36,6 +39,14 @@ public class Demonio implements Serializable {
 	@Column
 	private boolean derrotado;
 	
+	@Column
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date fechaCreacion;
+	
+	@Column
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date fechaDerrota;
+	
 	@OneToMany(mappedBy = "demonio", fetch = FetchType.LAZY, orphanRemoval = false)
 	private List<Pelea> listaPeleas = new ArrayList<>();
 	
@@ -46,6 +57,22 @@ public class Demonio implements Serializable {
 	@OneToOne
 	@JoinColumn(name="parte")
 	private Parte parte;
+	
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public Date getFechaDerrota() {
+		return fechaDerrota;
+	}
+
+	public void setFechaDerrota(Date fechaDerrota) {
+		this.fechaDerrota = fechaDerrota;
+	}
 
 	public String getNombre() {
 		return nombre;

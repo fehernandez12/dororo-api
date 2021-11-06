@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.edu.utadeo.modelEntity.Demonio;
 import com.edu.utadeo.modelEntity.Pelea;
 import com.edu.utadeo.services.IPeleaService;
 

@@ -1,5 +1,6 @@
 package com.edu.utadeo.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,10 @@ public class DemonioController {
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Demonio save(@RequestBody Demonio d) {
-		return demonioService.save(d);
+		Demonio demon = d;
+		Date fechaActual = new Date();
+		demon.setFechaCreacion(fechaActual);
+		return demonioService.save(demon);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -51,6 +55,8 @@ public class DemonioController {
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public Demonio derrotar(@PathVariable long id) {
 		Demonio current = demonioService.findById(id);
+		Date fechaActual = new Date();
+		current.setFechaDerrota(fechaActual);
 		current.setDerrotado(true);
 		return demonioService.save(current);
 	}
