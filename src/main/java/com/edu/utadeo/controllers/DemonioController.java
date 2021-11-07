@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.utadeo.modelEntity.Demonio;
 import com.edu.utadeo.services.IDemonioService;
+import com.edu.utadeo.services.ILugarService;
 
 @RestController
 @RequestMapping("/api/demonios")
@@ -58,6 +60,17 @@ public class DemonioController {
 		Date fechaActual = new Date();
 		current.setFechaDerrota(fechaActual);
 		current.setDerrotado(true);
+		return demonioService.save(current);
+	}
+	
+	@PutMapping("/{id}")
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public Demonio update(@PathVariable long id, @RequestBody Demonio d) {
+		Demonio current = demonioService.findById(id);
+		current.setNombre(d.getNombre());
+		current.setLugar(d.getLugar());
+		current.setImagen(d.getImagen());
+		current.setParte(d.getParte());
 		return demonioService.save(current);
 	}
 }
