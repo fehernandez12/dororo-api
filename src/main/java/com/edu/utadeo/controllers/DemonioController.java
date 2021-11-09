@@ -33,6 +33,16 @@ public class DemonioController {
 		return demonioService.findAll();
 	}
 	
+	@GetMapping("/derrotados")
+	public List<Demonio> getDerrotados() {
+		return demonioService.getDerrotados();
+	}
+	
+	@GetMapping("/invictos")
+	public List<Demonio> getInvictos() {
+		return demonioService.getInvictos();
+	}
+	
 	@GetMapping("/{id}")
 	public Demonio detail(@PathVariable long id) {
 		return demonioService.findById(id);

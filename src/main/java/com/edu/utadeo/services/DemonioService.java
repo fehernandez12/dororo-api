@@ -32,4 +32,16 @@ public class DemonioService implements IDemonioService {
 	public Demonio findById(long id) {
 		return demonioDao.getById(id).orElse(null);
 	}
+
+	@Override
+	public List<Demonio> getDerrotados() {
+		// TODO Auto-generated method stub
+		return demonioDao.findByDerrotadoTrue();
+	}
+
+	@Override
+	public List<Demonio> getInvictos() {
+		// TODO Auto-generated method stub
+		return demonioDao.findByDerrotadoFalse();
+	}
 }
