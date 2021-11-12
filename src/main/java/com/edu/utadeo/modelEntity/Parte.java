@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="partes")
@@ -18,8 +19,9 @@ public class Parte implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private long Id;
 	
+	@NotNull
 	@Column
 	private String nombre;
 	
@@ -28,6 +30,14 @@ public class Parte implements Serializable {
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
 	}
 
 	public void setNombre(String nombre) {

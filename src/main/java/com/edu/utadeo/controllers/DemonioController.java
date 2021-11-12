@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.utadeo.modelEntity.Demonio;
 import com.edu.utadeo.services.IDemonioService;
-import com.edu.utadeo.services.ILugarService;
 
 @RestController
 @RequestMapping("/api/demonios")

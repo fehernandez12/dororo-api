@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="lugares")
@@ -20,16 +23,26 @@ public class Lugar implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private long Id;
 	
+	@NotNull
 	@Column
 	private String nombre;
 	
-	@OneToMany(mappedBy = "id", fetch = FetchType.LAZY, orphanRemoval = false)
+	@OneToMany(mappedBy = "Id", fetch = FetchType.LAZY, orphanRemoval = false)
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 	private List<Demonio> listaDemonios = new ArrayList<>();
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
 	}
 
 	public void setNombre(String nombre) {

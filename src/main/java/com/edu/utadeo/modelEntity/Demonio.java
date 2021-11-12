@@ -17,8 +17,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="demonios",
@@ -28,8 +31,10 @@ public class Demonio implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private long Id;
 	
+	@Size(min=2, max=24)
+	@NotNull
 	@Column
 	private String nombre;
 	
@@ -50,14 +55,26 @@ public class Demonio implements Serializable {
 	@OneToMany(mappedBy = "demonio", fetch = FetchType.LAZY, orphanRemoval = false)
 	private List<Pelea> listaPeleas = new ArrayList<>();
 	
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="lugares.id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 	private Lugar lugar;
 	
+	@NotNull
 	@OneToOne
 	@JoinColumn(name="parte")
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 	private Parte parte;
 	
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
+	}
+
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
