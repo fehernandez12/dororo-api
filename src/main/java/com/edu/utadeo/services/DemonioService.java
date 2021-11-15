@@ -1,6 +1,7 @@
 package com.edu.utadeo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,12 @@ public class DemonioService implements IDemonioService {
 	
 	@Override
 	public Demonio findById(long id) {
-		return demonioDao.getById(id).orElse(null);
+		Optional<Demonio> demonio = demonioDao.findById(id);
+		if (demonio.isPresent()) {
+			return demonio.get();
+		} else {
+			return null;
+		}
 	}
 
 	@Override

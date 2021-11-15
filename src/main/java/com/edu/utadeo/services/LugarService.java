@@ -1,6 +1,7 @@
 package com.edu.utadeo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,12 @@ public class LugarService implements ILugarService {
 	@Override
 	public Lugar findById(long id) {
 		// TODO Auto-generated method stub
-		return lugarDao.getById(id).orElse(null);
+		Optional<Lugar> lugar = lugarDao.findById(id);
+		if (lugar.isPresent()) {
+			return lugar.get();
+		} else {
+			return null;
+		}
 	}
 
 }

@@ -1,13 +1,17 @@
 package com.edu.utadeo.modelEntity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -27,6 +31,9 @@ public class Parte implements Serializable {
 	
 	@OneToOne(mappedBy="parte", cascade=CascadeType.ALL)
 	private Demonio demonio;
+	
+	@OneToMany(mappedBy = "Id", fetch = FetchType.LAZY, orphanRemoval = false)
+	private List<Demonio> listaDemonios = new ArrayList<>();
 
 	public String getNombre() {
 		return nombre;

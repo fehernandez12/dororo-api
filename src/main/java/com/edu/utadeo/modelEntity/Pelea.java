@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="peleas")
 public class Pelea implements Serializable{
@@ -36,6 +38,7 @@ public class Pelea implements Serializable{
 	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="demonios.id")
+	@JsonIgnoreProperties("listaPeleas")
 	private Demonio demonio;
 	
 

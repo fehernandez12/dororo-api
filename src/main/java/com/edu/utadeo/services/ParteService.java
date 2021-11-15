@@ -1,6 +1,7 @@
 package com.edu.utadeo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,12 @@ public class ParteService implements IParteService {
 	@Override
 	public Parte findById(long id) {
 		// TODO Auto-generated method stub
-		return parteDao.getById(id).orElse(null);
+		Optional<Parte> parte = parteDao.findById(id);
+		if (parte.isPresent()) {
+			return parte.get();
+		} else {
+			return null;
+		}
 	}
 
 }

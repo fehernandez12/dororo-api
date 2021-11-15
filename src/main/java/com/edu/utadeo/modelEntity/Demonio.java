@@ -58,13 +58,13 @@ public class Demonio implements Serializable {
 	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="lugares.id")
-	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Lugar lugar;
 	
 	@NotNull
 	@OneToOne
 	@JoinColumn(name="parte")
-	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+	@JsonIgnoreProperties("listaDemonios")
 	private Parte parte;
 	
 	public long getId() {

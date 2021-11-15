@@ -30,7 +30,7 @@ public class Lugar implements Serializable {
 	private String nombre;
 	
 	@OneToMany(mappedBy = "Id", fetch = FetchType.LAZY, orphanRemoval = false)
-	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+	@JsonIgnoreProperties("lugar")
 	private List<Demonio> listaDemonios = new ArrayList<>();
 
 	public String getNombre() {
