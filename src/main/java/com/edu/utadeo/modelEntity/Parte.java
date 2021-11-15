@@ -16,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="partes")
 public class Parte implements Serializable {
@@ -32,6 +34,7 @@ public class Parte implements Serializable {
 	@OneToOne(mappedBy="parte", cascade=CascadeType.ALL)
 	private Demonio demonio;
 	
+	@JsonIgnoreProperties("parte")
 	@OneToMany(mappedBy = "Id", fetch = FetchType.LAZY, orphanRemoval = false)
 	private List<Demonio> listaDemonios = new ArrayList<>();
 
