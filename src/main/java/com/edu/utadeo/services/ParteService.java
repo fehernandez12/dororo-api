@@ -43,4 +43,10 @@ public class ParteService implements IParteService {
 		}
 	}
 
+	@Override
+	public List<Parte> getUnassigned() {
+		// TODO Auto-generated method stub
+		return parteDao.findByDemonioIsNull();
+	}
+
 }

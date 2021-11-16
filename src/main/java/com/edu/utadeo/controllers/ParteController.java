@@ -36,6 +36,11 @@ public class ParteController {
 		return parteService.findById(id);
 	}
 	
+	@GetMapping("/unassigned")
+	public List<Parte> getNoAsignadas(){
+		return parteService.getUnassigned();
+	}
+	
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Parte save(@RequestBody Parte p) {

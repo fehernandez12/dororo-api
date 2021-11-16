@@ -11,5 +11,5 @@ public interface IDemonioDAO extends JpaRepository<Demonio, Long> {
 	List<Demonio> findByDerrotadoTrue();
 
 	List<Demonio> findByDerrotadoFalse();
-
+	
 }

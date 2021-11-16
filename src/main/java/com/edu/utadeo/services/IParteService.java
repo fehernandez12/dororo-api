@@ -11,4 +11,6 @@ public interface IParteService {
 	public void delete(long id);
 	
 	public Parte findById(long id);
+	
+	public List<Parte> getUnassigned();
 }
