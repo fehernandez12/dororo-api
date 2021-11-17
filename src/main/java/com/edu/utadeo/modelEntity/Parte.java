@@ -32,6 +32,7 @@ public class Parte implements Serializable {
 	private String nombre;
 	
 	@OneToOne(mappedBy="parte", cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("parte")
 	private Demonio demonio;
 	
 

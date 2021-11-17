@@ -61,6 +61,12 @@ public class Demonio implements Serializable {
 	@JsonIgnoreProperties({"listaDemonios"})
 	private Lugar lugar;
 	
+	@NotNull
+	@OneToOne
+	@JoinColumn(name="parte")
+	@JsonIgnoreProperties("listaDemonios")
+	private Parte parte;
+	
 	public long getId() {
 		return Id;
 	}
@@ -115,6 +121,14 @@ public class Demonio implements Serializable {
 
 	public void setLugar(Lugar lugar) {
 		this.lugar = lugar;
+	}
+
+	public Parte getParte() {
+		return parte;
+	}
+
+	public void setParte(Parte parte) {
+		this.parte = parte;
 	}
 
 	public Demonio orElse(Object object) {
