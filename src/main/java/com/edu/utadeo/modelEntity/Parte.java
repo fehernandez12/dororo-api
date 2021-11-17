@@ -34,9 +34,6 @@ public class Parte implements Serializable {
 	@OneToOne(mappedBy="parte", cascade=CascadeType.ALL)
 	private Demonio demonio;
 	
-	@JsonIgnoreProperties("parte")
-	@OneToMany(mappedBy = "Id", fetch = FetchType.LAZY, orphanRemoval = false)
-	private List<Demonio> listaDemonios = new ArrayList<>();
 
 	public String getNombre() {
 		return nombre;

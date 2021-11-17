@@ -174,7 +174,6 @@ public class DemonioController {
 		current.setNombre(d.getNombre());
 		current.setLugar(d.getLugar());
 		current.setImagen(d.getImagen());
-		current.setParte(d.getParte());
 		return demonioService.save(current);
 	}
 }
