@@ -36,7 +36,6 @@ public class Pelea implements Serializable{
 	private boolean ganada;
 	
 	@NotNull
-	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="demonios.id")
 	@JsonIgnoreProperties("listaPeleas")
 	private Demonio demonio;

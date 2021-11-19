@@ -37,8 +37,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.edu.utadeo.modelEntity.Demonio;
 import com.edu.utadeo.modelEntity.Parte;
+import com.edu.utadeo.modelEntity.Pelea;
 import com.edu.utadeo.services.IDemonioService;
 import com.edu.utadeo.services.IParteService;
+import com.edu.utadeo.services.IPeleaService;
 
 @RestController
 @RequestMapping("/api/demonios")
@@ -49,6 +51,9 @@ public class DemonioController {
 	
 	@Autowired
 	private IParteService parteService;
+	
+	@Autowired
+	private IPeleaService peleaService;
 	
 	@GetMapping("/")
 	public List<Demonio> listAll() {
@@ -176,6 +181,10 @@ public class DemonioController {
 		current.setDerrotado(true);
 		current.setParte(null);
 		parteActual.setDemonio(null);
+		Pelea pelea = new Pelea();
+		pelea.setGanada(true);
+		pelea.setDemonio(current);
+		peleaService.save(pelea);
 		parteService.save(parteActual);
 		return demonioService.save(current);
 	}
