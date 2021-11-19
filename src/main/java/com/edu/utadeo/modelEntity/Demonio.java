@@ -52,8 +52,6 @@ public class Demonio implements Serializable {
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date fechaDerrota;
 	
-	@OneToMany(mappedBy = "demonio", fetch = FetchType.LAZY, orphanRemoval = false)
-	private List<Pelea> listaPeleas = new ArrayList<>();
 	
 	@NotNull
 	@ManyToOne
@@ -66,6 +64,11 @@ public class Demonio implements Serializable {
 	@JoinColumn(name="parte")
 	@JsonIgnoreProperties("listaDemonios")
 	private Parte parte;
+	
+	@OneToOne
+	@JoinColumn(name="pelea")
+	@JsonIgnoreProperties("listaDemonios")
+	private Pelea pelea;
 	
 	public long getId() {
 		return Id;
@@ -129,6 +132,14 @@ public class Demonio implements Serializable {
 
 	public void setParte(Parte parte) {
 		this.parte = parte;
+	}
+
+	public Pelea getPelea() {
+		return pelea;
+	}
+
+	public void setPelea(Pelea pelea) {
+		this.pelea = pelea;
 	}
 
 	public Demonio orElse(Object object) {

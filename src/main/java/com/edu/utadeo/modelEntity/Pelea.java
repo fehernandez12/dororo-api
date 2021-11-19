@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -36,8 +37,8 @@ public class Pelea implements Serializable{
 	private boolean ganada;
 	
 	@NotNull
-	@JoinColumn(name="demonios.id")
-	@JsonIgnoreProperties("listaPeleas")
+	@OneToOne(mappedBy="pelea")
+	@JsonIgnoreProperties({"pelea", "lugar", "parte"})
 	private Demonio demonio;
 	
 

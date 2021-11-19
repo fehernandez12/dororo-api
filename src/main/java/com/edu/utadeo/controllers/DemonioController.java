@@ -181,12 +181,16 @@ public class DemonioController {
 		current.setDerrotado(true);
 		current.setParte(null);
 		parteActual.setDemonio(null);
-		Pelea pelea = new Pelea();
-		pelea.setGanada(true);
-		pelea.setDemonio(current);
-		peleaService.save(pelea);
 		parteService.save(parteActual);
-		return demonioService.save(current);
+		Pelea pelea = crearPelea(true);		
+		current.setPelea(pelea);
+		return demonioService.save(current); 
+	}
+	
+	private Pelea crearPelea(boolean resultado) {
+		Pelea p = new Pelea();
+		p.setGanada(resultado);
+		return peleaService.save(p);
 	}
 	
 	@PutMapping("/{id}")
