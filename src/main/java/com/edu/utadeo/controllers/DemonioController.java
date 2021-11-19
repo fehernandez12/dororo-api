@@ -36,7 +36,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.edu.utadeo.modelEntity.Demonio;
+import com.edu.utadeo.modelEntity.Parte;
 import com.edu.utadeo.services.IDemonioService;
+import com.edu.utadeo.services.IParteService;
 
 @RestController
 @RequestMapping("/api/demonios")
@@ -44,6 +46,9 @@ import com.edu.utadeo.services.IDemonioService;
 public class DemonioController {
 	@Autowired
 	private IDemonioService demonioService;
+	
+	@Autowired
+	private IParteService parteService;
 	
 	@GetMapping("/")
 	public List<Demonio> listAll() {
@@ -162,8 +167,16 @@ public class DemonioController {
 	public Demonio derrotar(@PathVariable long id) {
 		Demonio current = demonioService.findById(id);
 		Date fechaActual = new Date();
+		Parte parteActual = parteService.findById(
+				current
+				.getParte()
+				.getId()
+		);
 		current.setFechaDerrota(fechaActual);
 		current.setDerrotado(true);
+		current.setParte(null);
+		parteActual.setDemonio(null);
+		parteService.save(parteActual);
 		return demonioService.save(current);
 	}
 	

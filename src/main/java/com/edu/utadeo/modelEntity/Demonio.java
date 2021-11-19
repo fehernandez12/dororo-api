@@ -56,7 +56,7 @@ public class Demonio implements Serializable {
 	private List<Pelea> listaPeleas = new ArrayList<>();
 	
 	@NotNull
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="lugares.id")
 	@JsonIgnoreProperties({"listaDemonios"})
 	private Lugar lugar;
